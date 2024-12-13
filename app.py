@@ -20,6 +20,9 @@ def detect_person(image_path):
     img = cv2.imread(image_path)
     height, width, channels = img.shape
 
+    # Resize image to reduce computation time
+    img = cv2.resize(img, (416, 416))
+
     # Detecting objects
     blob = cv2.dnn.blobFromImage(img, 0.00392, (416, 416), (0, 0, 0), True, crop=False)
     net.setInput(blob)
